@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.developer.sixfingers.reactiontest.GameActivity"
+    android:id="@+id/mainFiled"
+    android:background="@color/background_color"
+    >
+
+    <TextView
+        android:id="@+id/countTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1"
+        android:textSize="40pt"
+        android:layout_gravity="center"
+        android:textColor="@color/text_color"
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="16dp"
+        >
+
+        <TextView
+            android:id="@+id/currentWrongTimeTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:text="01:29"
+            android:textSize="16pt"
+            android:textAlignment="center"
+            android:textColor="@color/text_color"
+            />
+
+        <TextView
+            android:id="@+id/currentTimeTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:text="01:29"
+            android:textSize="12pt"
+            android:textAlignment="center"
+            android:textColor="@color/text_color"
+            />
+    </LinearLayout>
+
+
+
+</FrameLayout>

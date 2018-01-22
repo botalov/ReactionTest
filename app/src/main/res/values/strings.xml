@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">ReactionTest</string>
+
+    <string name="start_string">Start</string>
+    <string name="records_string">Records</string>\
+    <string name="your_result_string">You result:</string>
+
+    <string name="local_string">Local</string>
+    <string name="global_string">Global</string>
+
+    <string name="user_name_key">user_name</string>
+    <string name="def_user_name">User</string>
+
+    <string name="enter_your_name">Enter your name</string>
+    <string name="ok_string">Ok</string>
+
+    <string name="first_change_name_string">Please change your name</string>
+    <string name="change_name_string">Enter your name</string>
+
+</resources>

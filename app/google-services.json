@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1068945214725",
+    "firebase_url": "https://reactiontest-d80c2.firebaseio.com",
+    "project_id": "reactiontest-d80c2",
+    "storage_bucket": "reactiontest-d80c2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1068945214725:android:01463b3f3588d78b",
+        "android_client_info": {
+          "package_name": "com.developer.sixfingers.reactiontest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1068945214725-ro0t0oi4n7ivfbl5qure4o9i9joo2cjj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5_jXCUGe4AeLkhkyjSazaatBxvscZ0fQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
