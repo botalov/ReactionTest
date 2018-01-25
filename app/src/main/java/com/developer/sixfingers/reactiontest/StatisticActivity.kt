@@ -52,7 +52,7 @@ class StatisticActivity : AppCompatActivity() {
 
     private fun setContent(data : MutableList<Result>){
 
-        val localLayout = findViewById<LinearLayout>(R.id.tab1)
+        val localLayout = findViewById<LinearLayout>(R.id.tab2)
         for(item : Result in data){
             val textView = TextView(this)
             textView.text = item.name + item.res_val.toString()

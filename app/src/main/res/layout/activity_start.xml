@@ -5,13 +5,14 @@
     android:layout_height="match_parent"
     tools:context="com.developer.sixfingers.reactiontest.StartActivity"
     tools:ignore="Deprecated"
-    android:background="@color/background_color">
+    android:background="@drawable/back_gradient">
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="@string/start_string"
+        android:textSize="16pt"
         android:background="@android:color/transparent"
         android:onClick="onClickStart"
         android:textColor="@color/text_color"
@@ -22,8 +23,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|right"
         android:background="@android:color/transparent"
-        android:textColor="@color/text_color"
+        android:textColor="@color/text_color_opacity"
         android:text="@string/records_string"
+        android:layout_margin="10dp"
+        android:textSize="8pt"
         android:onClick="onClickGoToStat"
         />
 </FrameLayout>

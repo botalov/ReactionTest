@@ -4,9 +4,13 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
+    <color name="redColor">#E80505</color>
+    <color name="greenColor">#28C76F</color>
+<!--
     <color name="redColor">#9D0019</color>
-    <color name="greenColor">#62E200</color>
+    <color name="greenColor">#62E200</color>-->
 
     <color name="background_color">#61B7CF</color>
     <color name="text_color">#025167</color>
+    <color name="text_color_opacity">#80025167</color>
 </resources>
