@@ -24,21 +24,27 @@ fun addResultToDataBase(firebaseData: FirebaseDatabase, res: Result, callerror: 
     })
 }
 
-fun getResultsFromDataBase(firebaseData: FirebaseDatabase, callerror: (String)->Unit) : MutableList<Result> {
+fun getResultsFromDataBase(firebaseData: FirebaseDatabase, callerror: (String)->Unit, callres: (MutableList<Result>)->Unit) {
     val reference = firebaseData.getReference("results")
     val res : MutableList<Result> = mutableListOf()
 
     reference.addValueEventListener(object : ValueEventListener{
         override fun onDataChange(p0: DataSnapshot?) {
 
+            var ress = p0!!.children.toList()
+            for(x in ress){
+                if(x.value is Long) {
+                    val item = Result(x.key, x.value as Long)
+                    res.add(item)
+                }
+            }
 
             p0!!.children.mapNotNullTo(res) { it.getValue<Result>(Result::class.java) }
+            callres(res)
         }
 
         override fun onCancelled(p0: DatabaseError?) {
             callerror(p0.toString())
         }
     })
-
-    return res
 }

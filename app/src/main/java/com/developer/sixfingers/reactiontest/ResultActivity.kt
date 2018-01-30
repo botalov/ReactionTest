@@ -3,10 +3,12 @@ package com.developer.sixfingers.reactiontest
 import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.WindowManager
 import android.widget.*
 import com.developer.sixfingers.reactiontest.helpers.convertNumberToString
 import com.developer.sixfingers.reactiontest.helpers.data.Result
@@ -52,10 +54,21 @@ class ResultActivity : AppCompatActivity() {
         return sharedRef.getString(getString(R.string.user_name_key), getString(R.string.def_user_name))
     }
 
+    override fun onBackPressed() {
+        val intent = Intent(this, StartActivity::class.java)
+        startActivity(intent)
+    }
+
     private fun showDialog(titleDialog: String){
         val dialog  = Dialog(context)
         dialog.setContentView(R.layout.set_user_name_layout)
         dialog.setTitle(titleDialog)
+
+        var lp  = WindowManager.LayoutParams()
+        lp.copyFrom(dialog.window.attributes)
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT
+
 
         val editText : EditText = dialog.findViewById(R.id.enterUserNameET)
         val setUserNameButton : Button = dialog.findViewById(R.id.setUserNameButton)
@@ -72,5 +85,6 @@ class ResultActivity : AppCompatActivity() {
             dialog.dismiss()
         }
         dialog.show()
+        dialog.window.attributes = lp
     }
 }

@@ -33,6 +33,8 @@ class GameState private constructor() {
     private var isPress: Boolean = false
 
     private var handler: Handler = Handler()
+    private var handlerWrong: Handler = Handler()
+
     private var runnable: Runnable = Runnable {
         run {
             upData()
@@ -44,13 +46,19 @@ class GameState private constructor() {
             val countTV: TextView = (context as Activity).findViewById(R.id.countTV)
             countTV.visibility = View.VISIBLE
             for(item: Int in 1..3){
-                countTV.setText(item.toString())
+                countTV.text = item.toString()
                 TimeUnit.SECONDS.sleep(1)
             }
 
             countTV.setText("START")
             TimeUnit.SECONDS.sleep(1)
             countTV.visibility = View.GONE
+        }
+    }
+
+    private var wrongTimwRunnable: Runnable = Runnable{
+        run{
+            wrongSituationUpdate()
         }
     }
 
@@ -97,7 +105,11 @@ class GameState private constructor() {
     fun run(){
         StartTime = SystemClock.uptimeMillis()
 
+        currentWrongTime = 0
+        currentIterationTime = 0
+
         runnable.run()
+        wrongTimwRunnable.run()
     }
     fun runStart(){
         startRunnable.run()
@@ -130,18 +142,8 @@ class GameState private constructor() {
         fillColor()
     }
 
-
-    private var wrongStartTime: Long = 0
-    private var millisecondWrongTime: Long = 0
-    private var wrongTimeBuff: Long = 0
-    private var wrongUpdateTime = 0L
-
-    private var wrongSeconds: Int = 0
-    private var wrongMinutes: Int = 0
-    private var wrongMilliSeconds: Int = 0
-
-    private var isStartWrong: Boolean = false
-    private var oldWrongTime: Long = 0
+   /* private var isStartWrong: Boolean = false
+    private var oldWrongTime: Long = 0*/
     private fun upData(){
         MillisecondTime = SystemClock.uptimeMillis() - StartTime
         UpdateTime = TimeBuff + MillisecondTime
@@ -164,32 +166,18 @@ class GameState private constructor() {
             fillColor()
         }
 
-        if((isPress && stateArea == StateArea.RED) || (!isPress && stateArea == StateArea.GREEN)){
-            if(isStartWrong){
-                isStartWrong = false
-                oldWrongTime = MillisecondTime
-            }
-
-            millisecondWrongTime = SystemClock.uptimeMillis() - oldWrongTime
-            wrongUpdateTime = wrongTimeBuff + millisecondWrongTime
-            wrongSeconds = (wrongUpdateTime / 1000).toInt()
-            wrongMinutes = wrongSeconds / 60
-            wrongSeconds %= 60
-            wrongMilliSeconds = (wrongUpdateTime % 1000).toInt()
-
-            currentWrongTime+=wrongMilliSeconds
-        }
-        else{
-            isStartWrong = false
-        }
+        /*if((isPress && stateArea == StateArea.RED) || (!isPress && stateArea == StateArea.GREEN)){
+            currentWrongTime+=10
+        }*/
 
 
         fillColor()
         if(isExit){
-            handler?.removeCallbacks(runnable)
+            handler.removeCallbacks(runnable)
+            handlerWrong.removeCallbacks(wrongTimwRunnable)
         }
         else{
-            currentWrongTimeTV?.text = ":" +  currentWrongTime.toString()
+            currentWrongTimeTV?.text = (Math.round((currentWrongTime/1000).toDouble())).toString() + ":" +  (currentWrongTime % 1000).toString()
             currentTimeTV?.text = Minutes.toString() + ":" + Seconds.toString() + ":" +  MilliSeconds.toString() //convertNumberToString(currentTime)
 
             handler.postDelayed(runnable, 0)
@@ -204,6 +192,13 @@ class GameState private constructor() {
             context?.startActivity(intent)
         }
 
+    }
+
+    private fun wrongSituationUpdate(){
+        if((isPress && stateArea == StateArea.RED) || (!isPress && stateArea == StateArea.GREEN)){
+            currentWrongTime+=20
+        }
+        handlerWrong.postDelayed(wrongTimwRunnable, 10)
     }
 
     private fun fillColor() {

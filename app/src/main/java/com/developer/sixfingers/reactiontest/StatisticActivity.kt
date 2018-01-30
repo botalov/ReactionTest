@@ -3,6 +3,7 @@ package com.developer.sixfingers.reactiontest
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.LinearLayout
 import android.widget.TabHost
 import android.widget.TextView
@@ -15,8 +16,7 @@ class StatisticActivity : AppCompatActivity() {
 
     private val getStat = Runnable{
         run{
-            val results = getResultsFromDataBase(FirebaseDatabase.getInstance(), { e-> val t = Toast(this); t.setText(e); t.show()})
-            setContent(results)
+            getResultsFromDataBase(FirebaseDatabase.getInstance(), { e-> val t = Toast(this); t.setText(e); t.show()}, {resArr-> setContent(resArr)})
         }
     }
 
@@ -58,9 +58,14 @@ class StatisticActivity : AppCompatActivity() {
             textView.text = item.name + item.res_val.toString()
             textView.setTextColor(resources.getColor(R.color.text_color))
             textView.textSize = 14f
+            val lp = WindowManager.LayoutParams()
+            lp.horizontalMargin = 16f
+            lp.verticalMargin = 4f
 
             if(textView.parent!=null)
                 (textView.parent as ViewGroup).removeAllViews()
+
+            textView.layoutParams = lp
             localLayout.addView(textView)
         }
     }
